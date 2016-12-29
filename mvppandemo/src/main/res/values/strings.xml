@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MVPPanDemo</string>
+
+    <string name="get_weather">获取天气</string>
+</resources>
