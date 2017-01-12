@@ -1,4 +1,4 @@
-package cn.shper.mvppan.ui;
+package cn.shper.mvppan.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +14,7 @@ import cn.shper.mvppan.view.MVPView;
  * Description: MVP框架 Activity 基础类,工程中所有 Activity 必须继承此类
  * Version: V0.1 2016/12/28
  */
-public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActivity implements MVPView{
+public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActivity implements MVPView {
 
     protected P mPresenter;
 
@@ -22,7 +22,7 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // 绑定 Presenter
         mPresenter = initPresenter();
-        if (null != mPresenter){
+        if (null != mPresenter) {
             mPresenter.onCreate();
             Logger.d("MvpActivity.onCreate: " + mPresenter.getClass().getName());
         }
@@ -53,7 +53,7 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
 
     protected abstract void loadDate();
 
-    public P getPresenter(){
+    public P getPresenter() {
         return mPresenter;
     }
 

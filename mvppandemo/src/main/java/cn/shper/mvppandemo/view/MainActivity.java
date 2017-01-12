@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.shper.mvppan.ui.MVPActivity;
+import cn.shper.mvppan.view.MVPActivity;
 import cn.shper.mvppan.utils.Logger;
 import cn.shper.mvppan.view.MVPView;
 import cn.shper.mvppandemo.R;

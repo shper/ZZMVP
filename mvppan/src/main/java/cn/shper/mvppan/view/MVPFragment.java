@@ -1,4 +1,4 @@
-package cn.shper.mvppan.ui;
+package cn.shper.mvppan.view;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import cn.shper.mvppan.utils.Logger;
  * Description: MVP框架 Fragment 基础类,工程中所有 Fragment 必须继承此类
  * Version: V0.1 2016/12/28
  */
-public abstract class MVPFragment<P extends MVPPresenter> extends Fragment {
+public abstract class MVPFragment<P extends MVPPresenter> extends Fragment implements MVPView {
 
     protected P mvpPresenter;
 
