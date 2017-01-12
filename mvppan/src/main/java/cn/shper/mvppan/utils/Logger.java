@@ -1,5 +1,6 @@
 package cn.shper.mvppan.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import cn.shper.mvppan.BuildConfig;
@@ -14,9 +15,20 @@ public class Logger {
     private static String TAG = "MVPPan";
 
     public static void d(String msg) {
-        //if (BuildConfig.DEBUG) {
-            Log.d(TAG, msg);
-        //}
+        Log.d(TAG, msg);
+    }
+
+    public static void d(String... messages) {
+        if (null == messages) {
+            return;
+        }
+        StringBuilder builder = new StringBuilder();
+        for (String msg : messages) {
+            if (!TextUtils.isEmpty(msg)) {
+                builder.append(msg);
+            }
+        }
+        Log.d(TAG, builder.toString());
     }
 
 }

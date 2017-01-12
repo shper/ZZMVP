@@ -17,23 +17,48 @@ import cn.shper.mvppan.utils.Logger;
  */
 public abstract class MVPFragment<P extends MVPPresenter> extends Fragment implements MVPView {
 
-    protected P mvpPresenter;
+    protected P mPresenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mvpPresenter = createPresenter();
-        Logger.d("MVPFragment.onCreateView: " + mvpPresenter.getClass().getName());
+        mPresenter = createPresenter();
+        Logger.d("MVPFragment.onCreateView: ", null != mPresenter ? mPresenter.getClass().getName() : "Null");
+        // 启动 Presenter 生命周期
+        if (null != mPresenter) {
+            mPresenter.onCreate();
+        }
+
+        // 分解 onCreateView 使其更符合 单一职能原则
+        // 初始化变量
+        initVariables(savedInstanceState);
+        // 初始化监听器
+        initListeners();
+        // 加载数据
+        loadDate();
+
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     protected abstract P createPresenter();
 
+    protected abstract void initVariables(@Nullable Bundle savedInstanceState);
+
+    protected abstract void initListeners();
+
+    protected abstract void loadDate();
+
     @Override
     public void onDestroyView() {
-        if (null != mvpPresenter) {
-            Logger.d("MVPFragment.onDestroyView: " + mvpPresenter.getClass().getName());
-            mvpPresenter.onDestroy();
+        if (null != mPresenter) {
+            Logger.d("MVPFragment.onDestroyView: " + mPresenter.getClass().getName());
+            mPresenter.onDestroy();
         }
         super.onDestroyView();
     }

@@ -22,19 +22,19 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // 绑定 Presenter
         mPresenter = initPresenter();
+        Logger.d("MvpActivity.onCreate: ", null != mPresenter ? mPresenter.getClass().getName() : "Null");
+        // 启动 Presenter 生命周期
         if (null != mPresenter) {
             mPresenter.onCreate();
-            Logger.d("MvpActivity.onCreate: " + mPresenter.getClass().getName());
         }
-
         super.onCreate(savedInstanceState);
 
-        // 分解 OnCreate 使其更符合 单一职能原则
+        // 分解 onCreate 使其更符合 单一职能原则
         setContentView(getLayoutId());
-        // 初始化变量
-        initVariables(savedInstanceState);
         // 初始化控件
         initViews(savedInstanceState);
+        // 初始化变量
+        initVariables(savedInstanceState);
         // 初始化监听器
         initListeners();
         // 加载数据
@@ -59,11 +59,12 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (null != mPresenter) {
-            mPresenter.onDestroy();
             Logger.d("MvpActivity.onDestroy: " + mPresenter.getClass().getName());
+            mPresenter.onDestroy();
+            mPresenter = null;
         }
+        super.onDestroy();
     }
 
 }

@@ -13,9 +13,10 @@ public abstract class MVPModel<P extends MVPPresenter> {
 
     protected P mPresenter;
 
-    public MVPModel(P mvpPresenter) {
-        Logger.d("attachPresenter: " + mvpPresenter.getClass().getName());
-        this.mPresenter = mvpPresenter;
+    public MVPModel(P presenter) {
+        // 绑定 Presenter
+        Logger.d("attachPresenter: ", null != presenter ? presenter.getClass().getName() : "Null");
+        this.mPresenter = presenter;
     }
 
     /**
@@ -49,7 +50,7 @@ public abstract class MVPModel<P extends MVPPresenter> {
      * 解除绑定
      */
     public void onDestroy() {
-        Logger.d("detachView: " + mPresenter.getClass().getName());
+        Logger.d("detachView: ", null != mPresenter ? mPresenter.getClass().getName() : "Null");
         this.mPresenter = null;
     }
 }

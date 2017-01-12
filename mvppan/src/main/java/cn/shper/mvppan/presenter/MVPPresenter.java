@@ -15,15 +15,25 @@ public abstract class MVPPresenter<V extends MVPView, M extends MVPModel> {
     protected V mView;
     protected M mModel;
 
-    public MVPPresenter(V mvpView){
-        Logger.d("attachView: " + mvpView.getClass().getName());
-        this.mView = mvpView;
+    public MVPPresenter(V view) {
+        // 绑定 View
+        this.mView = view;
+        Logger.d("attachView: ", null != view ? view.getClass().getName() : "Null");
     }
 
     /**
-     * 子类实现此方法 绑定 Model
+     * 绑定 Model
      */
-    public abstract void onCreate();
+    public abstract M initModel();
+
+    /**
+     * 子类根据 具体业务实现此方法
+     */
+    public void onCreate() {
+        // 绑定 Model
+        this.mModel = initModel();
+        Logger.d("attachModel: ", null != mModel ? mModel.getClass().getName() : "Null");
+    }
 
     /**
      * 检测是否 View 已经绑定
@@ -62,22 +72,6 @@ public abstract class MVPPresenter<V extends MVPView, M extends MVPModel> {
     }
 
     /**
-     * 绑定 Model
-     */
-    public void attachModel(M mvpModel){
-        Logger.d("attachModel: " + mvpModel.getClass().getName());
-        this.mModel = mvpModel;
-    }
-
-    /**
-     * 解绑 Model
-     */
-    public void detachModel(){
-        Logger.d("detachModel: " + mModel.getClass().getName());
-        this.mModel = null;
-    }
-
-    /**
      * 获取绑定的 Model
      *
      * @return Model
@@ -99,8 +93,12 @@ public abstract class MVPPresenter<V extends MVPView, M extends MVPModel> {
      * 解除全部绑定
      */
     public void onDestroy() {
-        Logger.d("detachView: " + mView.getClass().getName());
-        this.mView = null;
-        detachModel();
+        Logger.d("detachModel: ", null != mModel ? mModel.getClass().getName() : "Null");
+        if (null != mModel) {
+            mModel.onDestroy();
+            mModel = null;
+        }
+        Logger.d("detachView: ", null != mView ? mView.getClass().getName() : "Null");
+        mView = null;
     }
 }
