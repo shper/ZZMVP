@@ -16,11 +16,14 @@ public class MVPPanApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        OkHttpPan.initClient();
         instance = this;
+
+        // 初始化 OkHttpPan
+        OkHttpPan.initialization();
+        OkHttpPan.setDebug(true);
     }
 
-    public static MVPPanApplication getInstance(){
+    public static MVPPanApplication getInstance() {
         return instance;
     }
 

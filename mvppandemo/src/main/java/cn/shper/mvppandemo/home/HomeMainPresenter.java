@@ -1,11 +1,9 @@
-package cn.shper.mvppandemo.presenter;
+package cn.shper.mvppandemo.home;
 
 import android.text.TextUtils;
 
 import cn.shper.mvppan.presenter.MVPPresenter;
-import cn.shper.mvppandemo.model.MainModel;
-import cn.shper.mvppandemo.net.entity.WeatherInfo;
-import cn.shper.mvppandemo.view.MainActivity;
+import cn.shper.mvppandemo.network.entity.WeatherInfo;
 import cn.shper.okhttppan.callback.HttpCallback;
 import cn.shper.okhttppan.constant.HttpError;
 
@@ -14,33 +12,32 @@ import cn.shper.okhttppan.constant.HttpError;
  * Description: MVPPan Demo main Presenter
  * Version: V0.1 2016/12/28
  */
-public class MainPresenter extends MVPPresenter<MainActivity, MainModel> {
+public class HomeMainPresenter extends MVPPresenter<HomeMainActivity, HomeMainModel> {
 
-    public MainPresenter(MainActivity mvpView) {
+    public HomeMainPresenter(HomeMainActivity mvpView) {
         super(mvpView);
     }
 
     @Override
-    public void onCreate() {
-        // 绑定 Model
-        attachModel(new MainModel(mView.getPresenter()));
+    public HomeMainModel initModel() {
+        return new HomeMainModel(this);
     }
 
-    public void getWeather(String cityId) {
+    public void getWeather(String cityId, boolean force) {
         if (TextUtils.isEmpty(cityId)) {
             mView.showDialog("错误", "未选择城市");
             return;
         }
         // 获取天气详情数据
-        mModel.getWeatherInfo(cityId, new HttpCallback<WeatherInfo>() {
+        mModel.getWeatherInfo(cityId, force, new HttpCallback<WeatherInfo>() {
             @Override
-            public void onSuccess(WeatherInfo weatherInfo, int i) {
+            public void onSuccess(WeatherInfo weatherInfo) {
                 mView.showToast("加载完成");
                 mView.setWeatherInfo(weatherInfo.toString());
             }
 
             @Override
-            public void onFail(HttpError httpError, int i) {
+            public void onFail(HttpError httpError) {
                 mView.showToast("获取数据失败");
                 mView.setWeatherInfo("error");
             }

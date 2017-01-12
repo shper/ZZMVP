@@ -1,5 +1,6 @@
-package cn.shper.mvppandemo.apistore;
+package cn.shper.mvppandemo.network.apistore;
 
+import cn.shper.mvppandemo.network.entity.WeatherInfo;
 import cn.shper.okhttppan.OkHttpPan;
 import cn.shper.okhttppan.callback.HttpCallback;
 
@@ -8,7 +9,7 @@ import cn.shper.okhttppan.callback.HttpCallback;
  * Description: Main Api
  * Version: V0.1 2016/12/28
  */
-public class MainApiStore {
+public class HomeApiStore {
 
     private static final String WEATHER_URL = "http://www.weather.com.cn/adat/sk/";
 
@@ -16,7 +17,8 @@ public class MainApiStore {
      * 获取天气详情
      */
     public static void getWeather(String cityId, HttpCallback callback) {
-        OkHttpPan.get().url(WEATHER_URL + cityId + ".html").build().execute(null, callback);
+        OkHttpPan.get().url(WEATHER_URL + cityId + ".html").jsonDataKey("weatherinfo")
+                .build().execute(WeatherInfo.class, callback);
     }
 
 }

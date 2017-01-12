@@ -5,13 +5,23 @@
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/get_weather_force_btn"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="@string/get_weather_force" />
+
+    <Button
         android:id="@+id/get_weather_btn"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/get_weather" />
 
     <TextView
+        android:layout_marginTop="30dp"
         android:id="@+id/weather_info_txt"
         android:layout_width="match_parent"
+        android:textSize="16sp"
         android:layout_height="wrap_content" />
 </LinearLayout>
