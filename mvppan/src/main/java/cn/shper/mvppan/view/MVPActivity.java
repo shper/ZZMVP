@@ -23,10 +23,7 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
         // 绑定 Presenter
         mPresenter = initPresenter();
         Logger.d("MvpActivity.onCreate: ", null != mPresenter ? mPresenter.getClass().getName() : "Null");
-        // 启动 Presenter 生命周期
-        if (null != mPresenter) {
-            mPresenter.onCreate();
-        }
+
         super.onCreate(savedInstanceState);
 
         // 分解 onCreate 使其更符合 单一职能原则

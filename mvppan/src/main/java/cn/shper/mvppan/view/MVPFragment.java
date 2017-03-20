@@ -24,10 +24,6 @@ public abstract class MVPFragment<P extends MVPPresenter> extends Fragment imple
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mPresenter = createPresenter();
         Logger.d("MVPFragment.onCreateView: ", null != mPresenter ? mPresenter.getClass().getName() : "Null");
-        // 启动 Presenter 生命周期
-        if (null != mPresenter) {
-            mPresenter.onCreate();
-        }
 
         // 分解 onCreateView 使其更符合 单一职能原则
         // 初始化变量

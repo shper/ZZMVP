@@ -12,15 +12,10 @@ import cn.shper.okhttppan.constant.HttpError;
  * Description: MVPPan Demo main Presenter
  * Version: V0.1 2016/12/28
  */
-public class HomeMainPresenter extends MVPPresenter<HomeMainActivity, HomeMainModel> {
+public class HomeMainPresenter extends MVPPresenter<HomeMainActivity> {
 
     public HomeMainPresenter(HomeMainActivity mvpView) {
         super(mvpView);
-    }
-
-    @Override
-    public HomeMainModel initModel() {
-        return new HomeMainModel(this);
     }
 
     public void getWeather(String cityId, boolean force) {
@@ -29,7 +24,7 @@ public class HomeMainPresenter extends MVPPresenter<HomeMainActivity, HomeMainMo
             return;
         }
         // 获取天气详情数据
-        mModel.getWeatherInfo(cityId, force, new HttpCallback<WeatherInfo>() {
+        HomeMainModel.getWeatherInfo(cityId, force, new HttpCallback<WeatherInfo>() {
             @Override
             public void onSuccess(WeatherInfo weatherInfo) {
                 mView.showToast("加载完成");

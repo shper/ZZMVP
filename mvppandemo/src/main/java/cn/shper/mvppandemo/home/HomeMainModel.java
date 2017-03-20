@@ -1,6 +1,5 @@
 package cn.shper.mvppandemo.home;
 
-import cn.shper.mvppan.model.MVPModel;
 import cn.shper.mvppandemo.common.constants.Constants;
 import cn.shper.mvppandemo.network.apistore.HomeApiStore;
 import cn.shper.mvppandemo.network.entity.WeatherInfo;
@@ -13,17 +12,13 @@ import cn.shper.okhttppan.constant.HttpError;
  * Description: MVPPan Demo main Model
  * Version: V0.1 2016/12/28
  */
-public class HomeMainModel extends MVPModel<HomeMainPresenter> {
-
-    public HomeMainModel(HomeMainPresenter mvpPresenter) {
-        super(mvpPresenter);
-    }
+public class HomeMainModel {
 
     /**
      * @param cityId
      * @param callback
      */
-    public void getWeatherInfo(String cityId, boolean force, final HttpCallback<WeatherInfo> callback) {
+    public static void getWeatherInfo(String cityId, boolean force, final HttpCallback<WeatherInfo> callback) {
         // 规定时间内重复求请，直接读取本地缓存数据
         if (System.currentTimeMillis() - SharedPreferencesUtil.getLong(Constants.KEY_UPDATE_TIME) < Constants.CACHE_TIME && !force) {
             WeatherInfo weatherInfo = new WeatherInfo();
