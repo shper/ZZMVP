@@ -52,10 +52,6 @@ public class HomeMainActivity extends MVPActivity<HomeMainPresenter> {
     }
 
     @Override
-    protected void loadDate() {
-    }
-
-    @Override
     public void showLoading() {
         Logger.d("开始Loading");
     }

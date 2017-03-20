@@ -30,8 +30,10 @@ public abstract class MVPFragment<P extends MVPPresenter> extends Fragment imple
         initVariables(savedInstanceState);
         // 初始化监听器
         initListeners();
-        // 加载数据
-        loadDate();
+
+        if (null != mPresenter) {
+            mPresenter.onCreate();
+        }
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }
@@ -47,8 +49,6 @@ public abstract class MVPFragment<P extends MVPPresenter> extends Fragment imple
     protected abstract void initVariables(@Nullable Bundle savedInstanceState);
 
     protected abstract void initListeners();
-
-    protected abstract void loadDate();
 
     @Override
     public void onDestroyView() {

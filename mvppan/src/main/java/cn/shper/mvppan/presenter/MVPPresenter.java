@@ -20,6 +20,11 @@ public abstract class MVPPresenter<V extends MVPView> {
     }
 
     /**
+     * 子类根据 具体业务实现此方法
+     */
+    public abstract void onCreate();
+
+    /**
      * 检测是否 View 已经绑定
      *
      * @return boolean

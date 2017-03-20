@@ -34,8 +34,10 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
         initVariables(savedInstanceState);
         // 初始化监听器
         initListeners();
-        // 加载数据
-        loadDate();
+
+        if (null != mPresenter) {
+            mPresenter.onCreate();
+        }
     }
 
     protected abstract P initPresenter();
@@ -47,8 +49,6 @@ public abstract class MVPActivity<P extends MVPPresenter> extends AppCompatActiv
     protected abstract void initViews(@Nullable Bundle savedInstanceState);
 
     protected abstract void initListeners();
-
-    protected abstract void loadDate();
 
     public P getPresenter() {
         return mPresenter;

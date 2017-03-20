@@ -18,6 +18,10 @@ public class HomeMainPresenter extends MVPPresenter<HomeMainActivity> {
         super(mvpView);
     }
 
+    @Override
+    public void onCreate() {
+    }
+
     public void getWeather(String cityId, boolean force) {
         if (TextUtils.isEmpty(cityId)) {
             mView.showDialog("错误", "未选择城市");
