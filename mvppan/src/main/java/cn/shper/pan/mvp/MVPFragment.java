@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.shper.pan.commons.util.Logger;
 
 /**
@@ -18,6 +20,7 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
 
     private P mPresenter;
     private View rootView;
+    private Unbinder mButterKnifeBinder;
 
     @Nullable
     @Override
@@ -26,6 +29,8 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
         if (rootView == null) {
             // 分解 onCreateView 使其更符合 单一职能原则
             rootView = inflater.inflate(getLayoutId(), null);
+            // 初始化view
+            mButterKnifeBinder = ButterKnife.bind(this, rootView);
             // 初始化变量
             initVariables(rootView, container, savedInstanceState);
             // 初始化监听
@@ -106,11 +111,21 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
 
     @Override
     public void onDestroy() {
+        Logger.d(this.getClass().getName());
         if (null != mPresenter) {
             Logger.d("MVPFragment.onDestroyView: ", mPresenter.getClass().getName());
             mPresenter.onDestroy();
+            mPresenter = null;
         }
+        mButterKnifeBinder.unbind();
+        rootView = null;
+
         super.onDestroy();
+    }
+
+    public P getPresenter() {
+        Logger.d("Presenter: ", null != mPresenter ? mPresenter.getClass().getName() : "null");
+        return mPresenter;
     }
 
     static {

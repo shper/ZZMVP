@@ -43,4 +43,5 @@ makeJar.dependsOn(clearJar, build)
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.1'
+    provided 'com.jakewharton:butterknife:8.5.1'
 }

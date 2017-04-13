@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.shper.pan.commons.util.Logger;
 
 /**
@@ -24,7 +26,7 @@ public abstract class MVPActivity<P extends MVPActivityPresenter> extends AppCom
         // 分解 onCreate 使其更符合 单一职能原则
         setContentView(getLayoutId());
         // 初始化控件
-        initViews(savedInstanceState);
+        ButterKnife.bind(this);
         // 初始化变量
         initVariables(savedInstanceState);
         // 初始化监听器
@@ -38,8 +40,6 @@ public abstract class MVPActivity<P extends MVPActivityPresenter> extends AppCom
     }
 
     protected abstract int getLayoutId();
-
-    protected abstract void initViews(@Nullable Bundle savedInstanceState);
 
     protected abstract void initVariables(@Nullable Bundle savedInstanceState);
 
