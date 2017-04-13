@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+def verCode = 170112003
+def verName = "1.0.1"
+
 android {
     compileSdkVersion 22
     buildToolsVersion "25.0.2"
@@ -7,11 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 170112003
-        versionName "1.0.1"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        versionCode verCode
+        versionName verName
     }
 
     buildTypes {
@@ -28,14 +28,14 @@ android {
 }
 
 task clearJar(type: Delete) {
-    delete 'build/outputs/mvppan-1.0.1-170112003.jar'
+    delete "build/outputs/mvppan-${verName}-${verCode}.jar"
 }
 
 task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
+    from('build/intermediates/bundles/debug/')
     into('build/outputs/')
     include('classes.jar')
-    rename('classes.jar', 'mvppan-1.0.1-170112003.jar')
+    rename('classes.jar', "mvppan-${verName}-${verCode}.jar")
 }
 
 makeJar.dependsOn(clearJar, build)
@@ -43,8 +43,4 @@ makeJar.dependsOn(clearJar, build)
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.1'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
 }
