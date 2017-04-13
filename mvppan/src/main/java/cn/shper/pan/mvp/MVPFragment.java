@@ -26,6 +26,8 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
         if (rootView == null) {
             // 分解 onCreateView 使其更符合 单一职能原则
             rootView = inflater.inflate(getLayoutId(), null);
+            // 初始化控件
+            initViews(rootView, container, savedInstanceState);
             // 初始化变量
             initVariables(rootView, container, savedInstanceState);
             // 初始化监听
@@ -42,6 +44,8 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract void initViews(View rootView, ViewGroup container, @Nullable Bundle savedInstanceState);
 
     protected abstract void initVariables(View rootView, ViewGroup container, @Nullable Bundle savedInstanceState);
 
@@ -106,11 +110,21 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
 
     @Override
     public void onDestroy() {
+        Logger.d(this.getClass().getName());
+
         if (null != mPresenter) {
             Logger.d("MVPFragment.onDestroyView: ", mPresenter.getClass().getName());
             mPresenter.onDestroy();
+            mPresenter = null;
         }
+
+        rootView = null;
         super.onDestroy();
+    }
+
+    public P getPresenter() {
+        Logger.d("Presenter: ", null != mPresenter ? mPresenter.getClass().getName() : "null");
+        return mPresenter;
     }
 
     static {
