@@ -7,8 +7,4 @@ package cn.shper.mvppan.view;
  */
 public interface MVPView {
 
-    void showLoading();
-
-    void hideLoading();
-
 }

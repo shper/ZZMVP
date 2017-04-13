@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 2017011203
+        versionCode 170112003
         versionName "1.0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -28,14 +28,14 @@ android {
 }
 
 task clearJar(type: Delete) {
-    delete 'build/outputs/mvppan-1.0.1-2017011203.jar'
+    delete 'build/outputs/mvppan-1.0.1-170112003.jar'
 }
 
 task makeJar(type: Copy) {
     from('build/intermediates/bundles/release/')
     into('build/outputs/')
     include('classes.jar')
-    rename('classes.jar', 'mvppan-1.0.1-2017011203.jar')
+    rename('classes.jar', 'mvppan-1.0.1-170112003.jar')
 }
 
 makeJar.dependsOn(clearJar, build)

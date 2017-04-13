@@ -51,16 +51,6 @@ public class HomeMainActivity extends MVPActivity<HomeMainPresenter> {
         getWeatherBtn.setOnClickListener(new GetWeatherListener());
     }
 
-    @Override
-    public void showLoading() {
-        Logger.d("开始Loading");
-    }
-
-    @Override
-    public void hideLoading() {
-        Logger.d("结束Loading");
-    }
-
     public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
