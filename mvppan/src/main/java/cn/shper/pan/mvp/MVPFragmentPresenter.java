@@ -1,6 +1,5 @@
 package cn.shper.pan.mvp;
 
-import cn.shper.pan.commons.util.Logger;
 import cn.shper.pan.mvp.exception.MVPNotBindException;
 
 /**
@@ -17,7 +16,7 @@ public abstract class MVPFragmentPresenter<F extends MVPFragment> {
     public MVPFragmentPresenter(F fragment) {
         // 绑定 View
         this.mFragment = fragment;
-        Logger.d("attachView: ", null != mFragment ? mFragment.getClass().getName() : "null");
+        Logger.d("attachView: ", null != mFragment ? mFragment.getClass().getSimpleName() : "null");
     }
 
     /**
@@ -26,30 +25,30 @@ public abstract class MVPFragmentPresenter<F extends MVPFragment> {
     protected abstract void onCreateView();
 
     public void onStart() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
     }
 
     public void onResume() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
     }
 
     public void onPause() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
     }
 
     public void onStop() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
     }
 
     public void onDestroyView() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
     }
 
     /**
      * 解除全部绑定
      */
     protected void onDestroy() {
-        Logger.d("detachView: ", null != mFragment ? mFragment.getClass().getName() : "null");
+        Logger.d("detachView: ", null != mFragment ? mFragment.getClass().getSimpleName() : "null");
         mFragment = null;
     }
 
@@ -73,13 +72,6 @@ public abstract class MVPFragmentPresenter<F extends MVPFragment> {
     public void checkFragmentBind() {
         if (!isFragmentBind()) {
             throw new MVPNotBindException("View Not Attach");
-        }
-    }
-
-    static {
-        Logger.initialization("MVPPan");
-        if (BuildConfig.DEBUG) {
-            Logger.openDebug();
         }
     }
 

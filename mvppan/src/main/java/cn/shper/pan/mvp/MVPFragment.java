@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.shper.pan.commons.util.Logger;
 
 /**
  * Author: Shper
@@ -25,7 +24,7 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         if (rootView == null) {
             // 分解 onCreateView 使其更符合 单一职能原则
             rootView = inflater.inflate(getLayoutId(), null);
@@ -38,7 +37,7 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
             // 初始化P层
             mPresenter = initPresenter();
             if (null != mPresenter) {
-                Logger.i("Presenter: " + mPresenter.getClass().getName());
+                Logger.i("Presenter: " + mPresenter.getClass().getSimpleName());
                 mPresenter.onCreateView();
             }
         }
@@ -56,64 +55,64 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
 
     @Override
     public void onStart() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         super.onStart();
 
         if (null != mPresenter) {
-            Logger.i("Presenter: " + mPresenter.getClass().getName());
+            Logger.i("Presenter: " + mPresenter.getClass().getSimpleName());
             mPresenter.onStart();
         }
     }
 
     @Override
     public void onResume() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         super.onResume();
 
         if (null != mPresenter) {
-            Logger.i("Presenter: " + mPresenter.getClass().getName());
+            Logger.i("Presenter: " + mPresenter.getClass().getSimpleName());
             mPresenter.onResume();
         }
     }
 
     @Override
     public void onPause() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         super.onPause();
 
         if (null != mPresenter) {
-            Logger.i("Presenter: " + mPresenter.getClass().getName());
+            Logger.i("Presenter: " + mPresenter.getClass().getSimpleName());
             mPresenter.onPause();
         }
     }
 
     @Override
     public void onStop() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         super.onStop();
 
         if (null != mPresenter) {
-            Logger.i("Presenter: " + mPresenter.getClass().getName());
+            Logger.i("Presenter: " + mPresenter.getClass().getSimpleName());
             mPresenter.onStop();
         }
     }
 
     @Override
     public void onDestroyView() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         super.onDestroyView();
 
         if (null != mPresenter) {
-            Logger.i("Presenter: " + mPresenter.getClass().getName());
+            Logger.i("Presenter: " + mPresenter.getClass().getSimpleName());
             mPresenter.onDestroyView();
         }
     }
 
     @Override
     public void onDestroy() {
-        Logger.d(this.getClass().getName());
+        Logger.d(this.getClass().getSimpleName());
         if (null != mPresenter) {
-            Logger.d("MVPFragment.onDestroyView: ", mPresenter.getClass().getName());
+            Logger.d("MVPFragment.onDestroyView: ", mPresenter.getClass().getSimpleName());
             mPresenter.onDestroy();
             mPresenter = null;
         }
@@ -124,15 +123,8 @@ public abstract class MVPFragment<P extends MVPFragmentPresenter> extends Fragme
     }
 
     public P getPresenter() {
-        Logger.d("Presenter: ", null != mPresenter ? mPresenter.getClass().getName() : "null");
+        Logger.d("Presenter: ", null != mPresenter ? mPresenter.getClass().getSimpleName() : "null");
         return mPresenter;
-    }
-
-    static {
-        Logger.initialization("MVPPan");
-        if (BuildConfig.DEBUG) {
-            Logger.openDebug();
-        }
     }
 
 }

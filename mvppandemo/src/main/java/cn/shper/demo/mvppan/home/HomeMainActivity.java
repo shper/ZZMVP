@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import cn.shper.demo.mvppan.R;
 import cn.shper.pan.mvp.MVPActivity;
 
@@ -18,9 +20,12 @@ import cn.shper.pan.mvp.MVPActivity;
  */
 public class HomeMainActivity extends MVPActivity<HomeMainPresenter> {
 
-    private Button getWeatherForceBtn;
-    private Button getWeatherBtn;
-    private TextView weatherInfoTxt;
+    @BindView(R.id.get_weather_force_btn)
+    Button getWeatherForceBtn;
+    @BindView(R.id.get_weather_btn)
+    Button getWeatherBtn;
+    @BindView(R.id.weather_info_txt)
+    TextView weatherInfoTxt;
 
     @Override
     protected HomeMainPresenter initPresenter() {
@@ -33,20 +38,28 @@ public class HomeMainActivity extends MVPActivity<HomeMainPresenter> {
     }
 
     @Override
-    protected void initViews(@Nullable Bundle savedInstanceState) {
-        getWeatherForceBtn = (Button) findViewById(R.id.get_weather_force_btn);
-        getWeatherBtn = (Button) findViewById(R.id.get_weather_btn);
-        weatherInfoTxt = (TextView) findViewById(R.id.weather_info_txt);
-    }
-
-    @Override
     protected void initVariables(@Nullable Bundle savedInstanceState) {
     }
 
     @Override
     protected void initListeners() {
-        getWeatherForceBtn.setOnClickListener(new GetWeatherListener(true));
-        getWeatherBtn.setOnClickListener(new GetWeatherListener());
+    }
+
+    @OnClick({R.id.get_weather_btn, R.id.get_weather_force_btn})
+    public void onGetWeatherClick(View view) {
+        boolean isForce = false;
+        switch (view.getId()) {
+            case R.id.get_weather_btn:
+                isForce = false;
+                break;
+            case R.id.get_weather_force_btn:
+                isForce = true;
+                break;
+        }
+
+        // 模拟获取 已经获取了 杭州 城市ID
+        // String cityId = cityTxt.getText();
+        getPresenter().getWeather("101210101", isForce);
     }
 
     public void showToast(String msg) {
@@ -62,29 +75,6 @@ public class HomeMainActivity extends MVPActivity<HomeMainPresenter> {
      */
     public void setWeatherInfo(CharSequence weatherInfo) {
         weatherInfoTxt.setText(weatherInfo);
-    }
-
-    /**
-     * 获取天气 Listener
-     */
-    private class GetWeatherListener implements View.OnClickListener {
-
-        private boolean force = false;
-
-        GetWeatherListener() {
-            this(false);
-        }
-
-        GetWeatherListener(boolean force) {
-            this.force = force;
-        }
-
-        @Override
-        public void onClick(View v) {
-            // 模拟获取 已经获取了 杭州 城市ID
-            // String cityId = cityTxt.getText();
-            getPresenter().getWeather("101210101", force);
-        }
     }
 
 }
