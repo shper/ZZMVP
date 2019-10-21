@@ -1,9 +1,9 @@
-package cn.shper.demo.mvppan.home;
+package cn.shper.demo.mvp.home;
 
-import cn.shper.demo.mvppan.base.constants.Constants;
-import cn.shper.demo.mvppan.network.apistore.HomeApiStore;
-import cn.shper.demo.mvppan.network.entity.WeatherInfo;
-import cn.shper.demo.mvppan.base.utils.SharedPreferencesUtil;
+import cn.shper.demo.mvp.base.constants.Constants;
+import cn.shper.demo.mvp.network.apistore.HomeApiStore;
+import cn.shper.demo.mvp.network.entity.WeatherInfo;
+import cn.shper.demo.mvp.base.utils.SharedPreferencesUtil;
 import cn.shper.okhttppan.callback.HttpCallback;
 import cn.shper.okhttppan.constant.HttpError;
 

@@ -1,4 +1,4 @@
-package cn.shper.pan.mvp;
+package cn.shper.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

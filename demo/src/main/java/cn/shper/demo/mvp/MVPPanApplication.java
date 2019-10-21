@@ -1,4 +1,4 @@
-package cn.shper.demo.mvppan;
+package cn.shper.demo.mvp;
 
 import android.app.Application;
 

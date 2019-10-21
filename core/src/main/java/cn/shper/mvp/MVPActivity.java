@@ -1,4 +1,4 @@
-package cn.shper.pan.mvp;
+package cn.shper.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;

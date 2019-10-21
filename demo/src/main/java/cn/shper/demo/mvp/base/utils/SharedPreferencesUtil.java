@@ -1,9 +1,9 @@
-package cn.shper.demo.mvppan.base.utils;
+package cn.shper.demo.mvp.base.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import cn.shper.demo.mvppan.MVPPanApplication;
+import cn.shper.demo.mvp.MVPPanApplication;
 
 /**
  * Author: Shper

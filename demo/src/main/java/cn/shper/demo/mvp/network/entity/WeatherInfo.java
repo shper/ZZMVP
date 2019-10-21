@@ -1,4 +1,4 @@
-package cn.shper.demo.mvppan.network.entity;
+package cn.shper.demo.mvp.network.entity;
 
 /**
  * Author: Shper

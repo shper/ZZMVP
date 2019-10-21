@@ -1,6 +1,6 @@
-package cn.shper.pan.mvp;
+package cn.shper.mvp;
 
-import cn.shper.pan.mvp.exception.MVPNotBindException;
+import cn.shper.mvp.exception.MVPNotBindException;
 
 /**
  * Author: Shper

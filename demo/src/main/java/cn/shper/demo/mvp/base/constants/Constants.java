@@ -1,4 +1,4 @@
-package cn.shper.demo.mvppan.base.constants;
+package cn.shper.demo.mvp.base.constants;
 
 /**
  * Author: xupan.shi

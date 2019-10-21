@@ -1,11 +1,11 @@
-package cn.shper.demo.mvppan.home;
+package cn.shper.demo.mvp.home;
 
 import android.text.TextUtils;
 
-import cn.shper.demo.mvppan.network.entity.WeatherInfo;
+import cn.shper.demo.mvp.network.entity.WeatherInfo;
 import cn.shper.okhttppan.callback.HttpCallback;
 import cn.shper.okhttppan.constant.HttpError;
-import cn.shper.pan.mvp.MVPActivityPresenter;
+import cn.shper.mvp.MVPActivityPresenter;
 
 /**
  * Author: Shper

@@ -1,4 +1,4 @@
-package cn.shper.pan.mvp.exception;
+package cn.shper.mvp.exception;
 
 /**
  * Author: Shper

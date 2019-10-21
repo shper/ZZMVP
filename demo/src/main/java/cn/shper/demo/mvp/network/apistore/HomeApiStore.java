@@ -1,6 +1,6 @@
-package cn.shper.demo.mvppan.network.apistore;
+package cn.shper.demo.mvp.network.apistore;
 
-import cn.shper.demo.mvppan.network.entity.WeatherInfo;
+import cn.shper.demo.mvp.network.entity.WeatherInfo;
 import cn.shper.okhttppan.OkHttpPan;
 import cn.shper.okhttppan.callback.HttpCallback;
 
