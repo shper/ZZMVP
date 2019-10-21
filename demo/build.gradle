@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "cn.shper.demo.mvppandemo"
@@ -30,13 +29,13 @@ android {
 }
 
 dependencies {
-    compile project(':mvppan')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.squareup.okhttp3:okhttp:3.5.0'
-    compile 'com.alibaba:fastjson:1.2.23'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation project(':core')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:22.2.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.5.0'
+    implementation 'com.alibaba:fastjson:1.2.23'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }

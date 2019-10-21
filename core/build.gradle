@@ -5,7 +5,6 @@ def verName = "1.0.2"
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 14
@@ -27,20 +26,20 @@ android {
     }
 }
 
-task clearJar(type: Delete) {
-    delete "build/outputs/mvppan-${verName}-${verCode}.jar"
-}
-
-task makeJar(type: Copy) {
-    from('build/intermediates/bundles/debug/')
-    into('build/outputs/')
-    include('classes.jar')
-    rename('classes.jar', "mvppan-${verName}-${verCode}.jar")
-}
-
-makeJar.dependsOn(clearJar, build)
+//task clearJar(type: Delete) {
+//    delete "build/outputs/mvppan-${verName}-${verCode}.jar"
+//}
+//
+//task makeJar(type: Copy) {
+//    from('build/intermediates/bundles/debug/')
+//    into('build/outputs/')
+//    include('classes.jar')
+//    rename('classes.jar', "mvppan-${verName}-${verCode}.jar")
+//}
+//
+//makeJar.dependsOn(clearJar, build)
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:22.2.1'
 }
